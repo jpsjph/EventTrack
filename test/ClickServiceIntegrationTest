@@ -1,0 +1,15 @@
+package services
+
+import model.EventCapture
+import org.scalatest.{FunSuite, Matchers}
+
+class ClickServiceIntegrationTest extends FunSuite with Matchers {
+
+  test("ClickService should save to Events collection") {
+    val mongo = MongoConnection("mongodb://disagenco3b.mylabserver.com:40025")
+    val sut = ClickService(mongo)
+    val events = List(EventCapture("1", 1L, "Nadia", "mac_server", 333, 200, "cookie", "agent", "127.0.0.1", "", "", ""))
+    sut.saveEvent(events)
+  }
+
+}
